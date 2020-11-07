@@ -26,5 +26,21 @@ function markerColor(mag) {
         return "#FF0000";
     };
 }
+// Read in JSON data to create the basemap
+d3.json(link, function(data) {
+    createFeatures(data.features);
+});
 
-
+function createFeatures(ourData) {
+// Read in earthquake data from our json
+    let earthquakes = L.geoJSON(ourData, {
+    onEachFeature : function (feature, layer) {
+        layer.bindPopup("<h3>" + feature.properties.place + "</h3><hr><p>" + newDate(feature.properties.time) + "</p>" + "<p> Mag.: " + feature.properties.mag + "</p>")  )
+        },
+            pointToLayer: function (feature, latlng){
+            return new L.circle(latlng,
+            {radius: markerSize(feature.properties.mag),
+            fillColor: markerColor(feature.properties.mag),
+            fillOpacity: 1,
+            stroke: false,
+        })
