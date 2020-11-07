@@ -127,3 +127,24 @@ legend.addTo(myMap);
 // Creating colorful legend layer
 let customLegend = L.control({position: 'bottomright'});
 
+// Generate colors and set magnitude grades
+customLegend.onAdd = function(){
+    let div = L.DomUtil.create("div", "info legend");
+    let colors = [
+        'green',
+        'yellow',
+        'blue',
+        'orange',
+        'red',
+        'pink'
+    ];
+    // Loop through "i" in grades to set grades 
+    for (let i = 0; i < grades.length; i++){
+        div.innerHTML += "<li style='background:" + colors[i] + "'></li>" + //<li></li> for list items
+        grades[i] + (grades[i + 1] ? "&ndash;" + grades[i + 1] : "+");
+    }
+    return div;
+    };
+    
+    customLegend.addTo(myMap);
+    }
