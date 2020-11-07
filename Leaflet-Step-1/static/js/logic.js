@@ -44,3 +44,9 @@ function createFeatures(ourData) {
             fillOpacity: 1,
             stroke: false,
         })
+    }
+});
+
+    createMap(earthquakes);
+}
+
