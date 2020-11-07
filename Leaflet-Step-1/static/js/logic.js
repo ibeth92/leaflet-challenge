@@ -124,7 +124,7 @@ for (let i = 0; i< magnitudes.length; i++) {
 return div;
 };
 legend.addTo(myMap);
-// Creating colorful legend layer
+// Creating legend layer to match with color keys
 let customLegend = L.control({position: 'bottomright'});
 
 // Generate colors and set magnitude grades
@@ -138,7 +138,7 @@ customLegend.onAdd = function(){
         'red',
         'pink'
     ];
-    // Loop through "i" in grades to set grades 
+// Loop through "i" in grades to set grades 
     for (let i = 0; i < grades.length; i++){
         div.innerHTML += "<li style='background:" + colors[i] + "'></li>" + //<li></li> for list items
         grades[i] + (grades[i + 1] ? "&ndash;" + grades[i + 1] : "+");
