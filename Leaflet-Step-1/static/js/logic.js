@@ -104,3 +104,26 @@ let myMap = L.map("mapid", {
     layers: [stmap, earthquakes]
 });
 
+// Add control panel layer to map
+L.control.layers(baseMaps, overlayMaps, {
+    collapsed: false
+}).addTo(myMap);
+
+// Add the legend to map
+let legend = L.control({ position: 'topright' });
+legend.onAdd = function (map) {
+// Make sure you can switch between Dom and Maps
+// Generate background and legend work when clicked
+// Make sure earthquake layer can be turned on and off
+let div = L.DomUtil.create('div', 'info legend'),
+    magnitudes = [];
+for (let i = 0; i< magnitudes.length; i++) {
+    div.innerHTML += '<i style="background:' + markerColor(magnitudes[i] + 1) + "<>/i" +
+    + magnitudes[i] + (magnitudes[i + 1] ? '-' + magnitudes[i + 1] + '<br>' : '+');
+}
+return div;
+};
+legend.addTo(myMap);
+// Creating colorful legend layer
+let customLegend = L.control({position: 'bottomright'});
+
