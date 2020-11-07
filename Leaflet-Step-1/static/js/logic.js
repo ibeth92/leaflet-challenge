@@ -96,4 +96,11 @@ function createMap(earthquakes) {
         Earthquakes: earthquakes
 
     };
+// Connecting our basemap to the HTML page
+// Generate all three layers
+let myMap = L.map("mapid", {
+    center: [ 37.09, -95.71],
+    zoom: 3,
+    layers: [stmap, earthquakes]
+});
 
