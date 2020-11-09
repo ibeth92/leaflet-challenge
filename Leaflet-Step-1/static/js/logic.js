@@ -1,5 +1,5 @@
 // Our JSON link to the info of the previous week's Earthquakes 
-let link = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geoson";
+let queryURL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geoson";
 
 // Create markers and adjust size and color using the magnitude of earthquake data 
 // Get marker colors 
