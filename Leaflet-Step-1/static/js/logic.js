@@ -140,7 +140,7 @@ customLegend.onAdd = function(){
     ];
 // Loop through "i" to set grades 
     for (let i = 0; i < grades.length; i++){
-        div.innerHTML += "<li style='background:" + colors[i] + "'></li>" + //<li></li> for list items
+        div.innerHTML += "<li style='background:" + colors[i] + "'></li>" +
         grades[i] + (grades[i + 1] ? "&ndash;" + grades[i + 1] : "+");
     }
     return div;
