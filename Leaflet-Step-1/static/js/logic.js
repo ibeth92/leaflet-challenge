@@ -37,25 +37,25 @@ function createFeatures(earthquakeData) {
             "</h3><hr><p>" + new Date(feature.properties.time) +
             "</h3><hr><p>" + "Magnitude: " + feature.properties.mag +
             "</h3><hr><p>" + "Depth: " + feature.geometry.coordinates[2] + "</p>");
-    }
-    console.log(earthquakeData);
+}
+console.log(earthquakeData);
 
-    function pointToLayer(feature, latlng) {
-        let circle = L.circleMarker(latlng, {
-            fillOpacity: 1,
-            radius: feature.properties.mag * 3,
-            fillColor: getColor(feature.geometry.coordinates[2]),
-            color: 'darkgreen'
-        });
-        return circle
-    }
-// Create a GeoJSON layer 
-// Run the onEachFeature function 
-    let earthquakes = L.geoJSON(earthquakeData, {
-        onEachFeature: onEachFeature,
-        pointToLayer: pointToLayer
+function markers (feature, latlng) {
+    let circle = L.circleMarker(latlng, {
+        fillOpacity: 1,
+        radius: feature.properties.mag * 3,
+        fillColor: getColor(feature.geometry.coordinates[2]),
+        color: 'darkgreen'
     });
-    // Send the earthquakes layer to the createMap function
+    return circle
+}
+// Create a GeoJSON layer 
+// Run the onEachFeature function once for data in array
+let earthquakes = L.geoJSON(earthquakeData, {
+    onEachFeature: onEachFeature,
+    pointToLayer: pointToLayer
+});
+// Send the earthquakes layer to the createMap function
     createMap(earthquakes);
 }
 // Create additional map layers and add backgrounds to maps
