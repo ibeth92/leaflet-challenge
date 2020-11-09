@@ -53,10 +53,10 @@ function markers (feature, latlng) {
 // Run the onEachFeature function once for data in array
 let earthquakes = L.geoJSON(earthquakeData, {
     onEachFeature: onEachFeature,
-    pointToLayer: pointToLayer
+    pointToLayer: markers
 });
 // Send the earthquakes layer to the createMap function
-    createMap(earthquakes);
+createMap(earthquakes);
 }
 // Create additional map layers and add backgrounds to maps
 // Maps pulled form Leaflet plugin site
@@ -94,11 +94,11 @@ function createMap(earthquakes) {
 // Create overlay object to hold our overlay layer
     let overlayMaps = {
         Earthquakes: earthquakes
-
     };
+
 // Connecting our basemap to the HTML page
 // Generate all three layers
-let myMap = L.map("mapid", {
+let myMap = L.map("map", {
     center: [ 37.09, -95.71],
     zoom: 3,
     layers: [stmap, earthquakes]
@@ -110,20 +110,21 @@ L.control.layers(baseMaps, overlayMaps, {
 }).addTo(myMap);
 
 // Add the legend to map
-let legend = L.control({ position: 'topright' });
+let legend = L.control({ position: 'bottomright' });
 legend.onAdd = function (map) {
 // Make sure you can switch between Dom and Maps
 // Generate background and legend work when clicked
 // Make sure earthquake layer can be turned on and off
 let div = L.DomUtil.create('div', 'info legend'),
     magnitudes = [];
-for (let i = 0; i< magnitudes.length; i++) {
-    div.innerHTML += '<i style="background:' + markerColor(magnitudes[i] + 1) + "<>/i" +
-    + magnitudes[i] + (magnitudes[i + 1] ? '-' + magnitudes[i + 1] + '<br>' : '+');
+    for (let i = 0; i< magnitudes.length; i++) {
+        div.innerHTML += '<i style="background:' + markerColor(magnitudes[i] + 1) + "<>/i" +
+        + magnitudes[i] + (magnitudes[i + 1] ? '-' + magnitudes[i + 1] + '<br>' : '+');
 }
-return div;
+    return div;
 };
 legend.addTo(myMap);
+
 // Create legend layer to match with color keys
 let customLegend = L.control({position: 'bottomright'});
 
@@ -144,7 +145,8 @@ customLegend.onAdd = function(){
         grades[i] + (grades[i + 1] ? "&ndash;" + grades[i + 1] : "+");
     }
     return div;
-    };
-    
-    customLegend.addTo(myMap);
-    }
+};
+
+// Add legend to map
+customLegend.addTo(myMap);
+}
