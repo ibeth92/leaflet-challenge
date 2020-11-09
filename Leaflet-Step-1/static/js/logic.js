@@ -139,6 +139,7 @@ customLegend.onAdd = function(){
         'red',
         'pink'
     ];
+    
 // Loop through "i" to set grades 
     for (let i = 0; i < grades.length; i++){
         div.innerHTML += "<li style='background:" + colors[i] + "'></li>" +
