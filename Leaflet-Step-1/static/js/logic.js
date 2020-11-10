@@ -1,4 +1,4 @@
-// Our JSON link to the info of the previous week's Earthquakes 
+// Import JSON link to the info of the previous week's Earthquakes 
 let queryURL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geoson";
 
 // Create markers and adjust size and color using the magnitude of earthquake data 
@@ -30,7 +30,7 @@ d3.json(queryUrl, function (data) {
 });
 
 //Create function to run on certain features
-// Read in earthquake data from our json
+// Read in earthquake data from our JSON
 function createFeatures(earthquakeData) {
     function onEachFeature(feature, layer) {
         layer.bindPopup("<h3>" + feature.properties.place +
